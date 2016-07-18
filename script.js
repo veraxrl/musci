@@ -14,28 +14,30 @@ app.config(function($routeProvider) {
 app.controller('mainCtrl', function($scope, $http, $firebaseObject, $firebaseArray,$firebaseAuth) {
 
 
-	SC.initialize({
-	  client_id: 'eb60efff116075efdaa769b3eec7a5f8'
-	});
+	$scope.playtrack = function() {
+		SC.initialize({
+		  client_id: 'eb60efff116075efdaa769b3eec7a5f8'
+		});
 
-	if ($scope.trackid==="misty") {
-		SC.stream('/tracks/244261890').then(function(player){
-		  player.play();
-		  console.log(player);
-		  $scope.myPlayer= player.streamInfo;
-		});
-	} else if ($scope.trackid==="latenight") {
-		SC.stream('/tracks/11711484').then(function(player){
-		  player.play();
-		  console.log(player);
-		  $scope.myPlayer= player.streamInfo;
-		});
-	} else if ($scope.trackid==="river") {
-		SC.stream('/tracks/128905480').then(function(player){
-		  player.play();
-		  console.log(player);
-		  $scope.myPlayer= player.streamInfo;
-		});
+		if ($scope.trackid==="misty") {
+			SC.stream('/tracks/244261890').then(function(player){
+			  player.play();
+			  console.log(player);
+			  $scope.myPlayer= player.streamInfo;
+			});
+		} else if ($scope.trackid==="latenight") {
+			SC.stream('/tracks/11711484').then(function(player){
+			  player.play();
+			  console.log(player);
+			  $scope.myPlayer= player.streamInfo;
+			});
+		} else if ($scope.trackid==="river") {
+			SC.stream('/tracks/128905480').then(function(player){
+			  player.play();
+			  console.log(player);
+			  $scope.myPlayer= player.streamInfo;
+			});
+		}
 	}
  
 });
