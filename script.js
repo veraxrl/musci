@@ -11,22 +11,26 @@ app.config(function($routeProvider) {
 	})                                      
 });
 
-app.controller('mainCtrl', function($scope, $http, $firebaseObject, $firebaseArray,$firebaseAuth) {
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseAuth) {
+	var ref = firebase.database().ref().child("tracks");
+	$scope.tracks= $firebaseArray(ref);
 
+	//Function to add new track:
+	$scope.addTrack = function(myName,Id) {
+	    $scope.tracks.$add({
+	    	name: myName,
+	    	id: Id
+	    });
+  	};
 
-	$scope.playtrack = function() {
+  	//Function to play track, triggered by ng-click:
+	$scope.playTrack = function() {
 		SC.initialize({
 		  client_id: 'eb60efff116075efdaa769b3eec7a5f8'
 		});
 
 		if ($scope.trackid==="misty") {
 			SC.stream('/tracks/244261890').then(function(player){
-			  player.play();
-			  console.log(player);
-			  $scope.myPlayer= player.streamInfo;
-			});
-		} else if ($scope.trackid==="latenight") {
-			SC.stream('/tracks/11711484').then(function(player){
 			  player.play();
 			  console.log(player);
 			  $scope.myPlayer= player.streamInfo;
@@ -39,6 +43,9 @@ app.controller('mainCtrl', function($scope, $http, $firebaseObject, $firebaseArr
 			});
 		}
 	}
+
+	// Use the below to add new track: 
+	// $scope.addTrack("misty","244261890");
  
 });
 
