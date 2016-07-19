@@ -31,28 +31,43 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseAuth
 
 		if ($scope.trackid==="misty") {
 			SC.stream('/tracks/244261890').then(function(player){
-			  player.play();
 			  console.log(player);
-			  $scope.myPlayer= player.streamInfo;
+			  $scope.currentPlayer = player;
 			});
 		} else if ($scope.trackid==="river") {
 			SC.stream('/tracks/128905480').then(function(player){
-			  player.play();
-			  console.log(player);
-			  $scope.myPlayer= player.streamInfo;
+			  $scope.currentPlayer = player;
 			});
+		} else if ($scope.trackid==="clouds") {
+			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v=EhC1K6KCm90';
+		} else if ($scope.trackid==="electric") {
+			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v=Rv_a6rlRjZk';
 		}
+
+	}
+
+	$scope.pausePlayer = function() {
+		if ($scope.bestPlayer) $scope.bestPlayer.pauseVideo();
+		if ($scope.currentPlayer) $scope.currentPlayer.pause();
+	} 
+
+	$scope.stopPlayer = function() {
+		if ($scope.bestPlayer) $scope.bestPlayer.stopVideo();
+		if ($scope.currentPlayer) $scope.currentPlayer.stop();  //SoundCloud does not have a stop function
+	}
+
+	$scope.startPlayer = function() {
+		if ($scope.bestPlayer) $scope.bestPlayer.playVideo();
+		if ($scope.currentPlayer) $scope.currentPlayer.play();
 	}
 
 	// Use the below to add new track: 
 	// $scope.addTrack("misty","244261890");
 
-	$scope.anotherGoodOne = 'https://www.youtube.com/watch?v=EhC1K6KCm90';
-
-	//Auto Replay Function:
-	$scope.$on('youtube.player.ended', function ($event, player) {
-		player.playVideo();
-	});
+	//Auto play Function:
+	// $scope.$on('youtube.player.ended', function ($event, player) {
+	// 	bestPlayer.playVideo();
+	// });
  
 });
 
