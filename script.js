@@ -1,4 +1,4 @@
-var app = angular.module('musciApp', ["ngRoute","firebase"]); 
+var app = angular.module('musciApp', ["ngRoute","firebase","youtube-embed"]); 
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
@@ -46,6 +46,13 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseAuth
 
 	// Use the below to add new track: 
 	// $scope.addTrack("misty","244261890");
+
+	$scope.anotherGoodOne = 'https://www.youtube.com/watch?v=EhC1K6KCm90';
+
+	//Auto Replay Function:
+	$scope.$on('youtube.player.ended', function ($event, player) {
+		player.playVideo();
+	});
  
 });
 
