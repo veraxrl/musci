@@ -37,23 +37,32 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	
   	//Creating the dropdown menu items:                            
 	$scope.menu = [];
-	
+	$scope.playMenu= [];
+
 	var scRef = firebase.database().ref().child("tracks").child("SoundCloud");
 	$scope.scMenus= $firebaseArray(scRef);
 	
 	$scope.scMenus.$loaded().then(function(data) {
-		$scope.menu.push({"soundcloud": $scope.scMenus});
-		console.log($scope.menu);
-		console.log($scope.menu[0].soundcloud[0].name);
+		$scope.menu.push({"playlist": $scope.scMenus});
 	});
 
 	var ytRef = firebase.database().ref().child("tracks").child("Youtube");
 	$scope.ytMenus = $firebaseArray(ytRef);
 
 	$scope.ytMenus.$loaded().then(function(data) {
-		$scope.menu.push({"youtube": $scope.ytMenus});
-		console.log($scope.menu);
+		$scope.menu.push({"playlist": $scope.ytMenus});
+
+		for (var i=0;i<$scope.menu.length;i++) {
+			for (var j=0; j<$scope.menu[i].playlist.length;j++) {
+				var song= {name:$scope.menu[i].playlist[j].name, id:$scope.menu[i].playlist[j].id}; 
+				$scope.playMenu.push(song);
+			}
+		}
+
+		console.log($scope.playMenu);
+
 	});	
+
 
 	// $scope.menus = $scope.ytMenus;
 	// $scope.menus.push($scope.scMenus);
@@ -65,20 +74,27 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		});
 
 		if ($scope.trackid==="misty") {
-			SC.stream('/tracks/244261890').then(function(player){
+			SC.stream('/tracks/'+$scope.currentID).then(function(player){
 			  console.log(player);
 			  $scope.currentPlayer = player;
 			});
 		} else if ($scope.trackid==="river") {
-			SC.stream('/tracks/128905480').then(function(player){
+			SC.stream('/tracks/'+$scope.currentID).then(function(player){
 			  $scope.currentPlayer = player;
 			});
 		} else if ($scope.trackid==="clouds") {
-			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+'EhC1K6KCm90';
+			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+$scope.currentID;
 		} else if ($scope.trackid==="electric") {
-			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+'Rv_a6rlRjZk';
+			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+$scope.currentID;
 		}
 
+	}
+
+	$scope.assignID = function(p) {
+		console.log(p.id);
+		$scope.currentID= p.id;
+		$scope.trackid = p.name;
+		$scope.playTrack();
 	}
 
 	//Function to control track: (play, pause, stop)

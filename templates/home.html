@@ -28,32 +28,20 @@
 		<div class="search col-md-2 col-md-offset-3">
 			<input ng-model="trackid">
 					<!-- Split button -->
+		</div>
+		<div class="search col-md-2">
 			<div class="btn-group">
-				<button type="button" class="btn btn-danger">Select Track</button>
-				<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button type="button" class="btn">Select Track</button>
+				<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span class="caret"></span>
 					<span class="sr-only">Toggle Dropdown</span>
 				</button>
 				<ul class="dropdown-menu">
-					<li>
-						<a href="#/">
-							{{menu[0].soundcloud[0].name}}
-						</a>
-						<a href="#/">
-							{{menu[0].soundcloud[1].name}}
-						</a>
-						<a href="#/">
-							{{menu[1].youtube[0].name}}
-						</a>
-						<a href="#/">
-							{{menu[1].youtube[1].name}}
-						</a>
+					<li ng-repeat="p in playMenu" ng-click="assignID(p)">
+                {{p.name}}
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div class="search col-md-2">
-			<button ng-click="playTrack()">Search</button>
 		</div>
 	</div>
   <div class="row">
