@@ -1,0 +1,37 @@
+
+.nav{
+	background-color:#486B7F;
+	height:125px;
+}
+.logo{
+	color:#C9EDF8;
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 75px;
+	}
+.control-btn{
+	border-radius: 100%;
+	background-color: white;
+	border: none;
+	margin: 0;
+	padding: 0;
+	width:50px;
+}
+.youtube{
+	position:absolute;
+	top:0;
+	left:-2000px;
+}
+.player{
+	height:75px;
+	background-color:#C9EDF8;
+	padding-bottom: 25px;
+	padding-top: 8px;
+}
+.search{
+	margin-top:22px;
+	height:100%;
+}
+h4{
+	font-family: 'Shadows Into Light', cursive;
+	color:#C9EDF8;
+}
