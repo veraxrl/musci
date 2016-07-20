@@ -36,7 +36,7 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li ng-repeat="p in playMenu" ng-click="assignID(p)">
-                {{p.name}}
+                			{{p.name}}
 					</li>
 				</ul>
 			</div>
@@ -44,6 +44,12 @@
 		<div class="search col-md-2">
 			<button ng-click="playTrack()">Search</button>
 		</div>
+	</div>
+	<div class="row">
+		<h1>Add YT songs to playlist</h1>
+		Youtube URL: <input ng-model="newURL">
+		Track name: <input ng-model="newTrackName">
+		<button ng-click="refreshDB()">Add</button>
 	</div>
 		<youtube-video class="youtube" video-url="anotherGoodOne" player="bestPlayer"></youtube-video>
 </div>

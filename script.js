@@ -19,7 +19,8 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		$scope.tracks= $firebaseArray(ref);
 	    $scope.tracks.$add({
 	    	name: myName,
-	    	id: Id
+	    	id: Id,
+	    	type: "SC"
 	    });
   	};
 
@@ -29,7 +30,8 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		$scope.tracks= $firebaseArray(ref);
 	    $scope.tracks.$add({
 	    	name: myName,
-	    	id: Id
+	    	id: Id,
+	    	type: "YT"
 	    });
   	};
 	
@@ -52,7 +54,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 
 		for (var i=0;i<$scope.menu.length;i++) {
 			for (var j=0; j<$scope.menu[i].playlist.length;j++) {
-				var song= {name:$scope.menu[i].playlist[j].name, id:$scope.menu[i].playlist[j].id}; 
+				var song= {name:$scope.menu[i].playlist[j].name, id:$scope.menu[i].playlist[j].id, type:$scope.menu[i].playlist[j].type}; 
 				$scope.playMenu.push(song);
 			}
 		}
@@ -71,20 +73,16 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		  client_id: 'eb60efff116075efdaa769b3eec7a5f8'
 		});
 
-		if ($scope.trackid==="misty") {
+		if ($scope.tracktype==="SC") {
 			SC.stream('/tracks/'+$scope.currentID).then(function(player){
 			  console.log(player);
 			  $scope.currentPlayer = player;
 			});
-		} else if ($scope.trackid==="river") {
-			SC.stream('/tracks/'+$scope.currentID).then(function(player){
-			  $scope.currentPlayer = player;
-			});
-		} else if ($scope.trackid==="clouds") {
+		} 
+		else if ($scope.tracktype==="YT") {
 			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+$scope.currentID;
-		} else if ($scope.trackid==="electric") {
-			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+$scope.currentID;
-		}
+			$scope.currentPlayer= false;
+		} 
 
 	}
 
@@ -92,34 +90,41 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		console.log(p.id);
 		$scope.currentID= p.id;
 		$scope.trackid = p.name;
+		$scope.tracktype= p.type;
 		$scope.playTrack();
+		console.log("type "+p.type);
 	}
 
 	//Function to control track: (play, pause, stop)
 	$scope.pausePlayer = function() {
-		if ($scope.bestPlayer) $scope.bestPlayer.pauseVideo();
-		if ($scope.currentPlayer) $scope.currentPlayer.pause();
+		if ($scope.tracktype==="YT") $scope.bestPlayer.pauseVideo();
+		if ($scope.tracktype==="SC") $scope.currentPlayer.pause();
 	} 
 
 	$scope.stopPlayer = function() {
-		if ($scope.bestPlayer) $scope.bestPlayer.stopVideo();
-		if ($scope.currentPlayer) {
+		if ($scope.tracktype==="YT") $scope.bestPlayer.stopVideo();
+		if ($scope.tracktype==="SC") {
 			$scope.currentPlayer.pause();
 			$scope.currentPlayer.seek(0);
 		}
 	}
 
 	$scope.startPlayer = function() {
-		if ($scope.bestPlayer) $scope.bestPlayer.playVideo();
-		if ($scope.currentPlayer) {
+		if ($scope.tracktype==="YT") $scope.bestPlayer.playVideo();
+		if ($scope.tracktype==="SC") {
 			$scope.currentPlayer.play();
 		}
 
 	}
 
+	$scope.refreshDB = function() {
+		console.log($scope.newURL.substring(32));
+		$scope.addYTTrack($scope.newTrackName, $scope.newURL.substring(32));
+	}
+
 	// Use the below to add new track: 
-	//$scope.addSCTrack("river","128905480");
-	//$scope.addYTTrack("clouds","EhC1K6KCm90");
+	// $scope.addSCTrack("misty","244261890");
+	// $scope.addSCTrack("river","128905480");
 
 	//Auto play Function:
 	// $scope.$on('youtube.player.ended', function ($event, player) {
@@ -149,15 +154,10 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 
 
 //TO-DOS: 
-//1.  Figure out how to do Bootstrap dropdown bar
 //2.  Display all songs in Firebase database in a playlist (CSS work, make it pretty) 
 // The firebase function is already set up. Use function to add track infos. 
-
-//3.  Use firebase db to store songs, their ids. (done!) 
-//4.  Systematially choose the songs to play. (not hardcode if else statement, based on firebase db and user input)
-
-//5.  Instead of manually type in song name, have a dropdown bar to display all songs in the database 
 //6.  Fix bug of multiple loaded songs playing at once
+
 //Future goals: 
 //6.  Figure out how to add songs to database based on URL (String manipulation, to be able to recognize that the 
 //URL belongs to a specific API)
