@@ -32,7 +32,30 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	    	id: Id
 	    });
   	};
+	
+  	//Creating the dropdown menu items:                            
+	$scope.menu = [];
+	
+	var scRef = firebase.database().ref().child("tracks").child("SoundCloud");
+	$scope.scMenus= $firebaseArray(scRef);
+	
+	$scope.scMenus.$loaded().then(function(data) {
+		$scope.menu.push({"soundcloud": $scope.scMenus});
+		console.log($scope.menu);
+		console.log($scope.menu[0].soundcloud[0].name);
+	});
 
+	var ytRef = firebase.database().ref().child("tracks").child("Youtube");
+	$scope.ytMenus = $firebaseArray(ytRef);
+
+	$scope.ytMenus.$loaded().then(function(data) {
+		$scope.menu.push({"youtube": $scope.ytMenus});
+		console.log($scope.menu);
+	});	
+
+	// $scope.menus = $scope.ytMenus;
+	// $scope.menus.push($scope.scMenus);
+	
   	//Function to select track, triggered by ng-click:
 	$scope.playTrack = function() {
 		SC.initialize({
@@ -125,3 +148,4 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 //7.  How to do chrome extension 
 //8.  How to drag and drop songs 
 //9.  Make a log-in page 
+//10. change trackid to an object that we can add to, and thus access them through that. we can then fix many other functions through that

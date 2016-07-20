@@ -2,8 +2,20 @@
 
 <input ng-model="trackid">
 <button ng-click="playTrack()">Search</button>
-
-<h1></h1>
+<button ng-click="timing()">Click</button>
+<!-- Split button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Select Track</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li ng-repeat="menu in menus">
+      <a href="#/">{{menu.soundcloud.name}}</a>
+    </li>
+  </ul>
+</div>
 
 <div class="row">
   <button ng-click="startPlayer()">Play</button>
