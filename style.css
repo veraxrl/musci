@@ -8,11 +8,12 @@
 	font-family: 'Shadows Into Light', cursive;
 	font-size: 75px;
 	}
-button{
-	border-radius: 25px;
+.control-btn{
+	border-radius: 100%;
 	background-color: white;
-}
-.button{
+	border: none;
+	margin: 0;
+	padding: 0;
 	width:50px;
 }
 .youtube{
@@ -29,4 +30,8 @@ button{
 .search{
 	margin-top:22px;
 	height:100%;
+}
+h4{
+	font-family: 'Shadows Into Light', cursive;
+	color:#C9EDF8;
 }
