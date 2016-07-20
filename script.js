@@ -3,15 +3,23 @@ var app = angular.module('musciApp', ["ngRoute","firebase","youtube-embed"]);
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
 		controller: 'mainCtrl',
-		templateUrl: 'templates/home.html'
-	})
-	$routeProvider.when('/login', {
+		templateUrl: 'templates/home.html',
+		resolve: {
+
+     		"currentAuth": function($firebaseAuth) {
+       		return $firebaseAuth().$requireSignIn();
+     		}
+   		}
+	}).when('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'templates/login.html'
+	}).when('/signup', {
+		controller: 'signupCtrl',
+		templateUrl: 'templates/signup.html'
 	})                                      
 });
 
-app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth) {
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location) {
 
 	//Function to add new track:
 	$scope.addSCTrack = function(myName,Id) {
@@ -41,7 +49,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 
 	var scRef = firebase.database().ref().child("tracks").child("SoundCloud");
 	$scope.scMenus= $firebaseArray(scRef);
-	
+
 	$scope.scMenus.$loaded().then(function(data) {
 		$scope.menu.push({"playlist": $scope.scMenus});
 	});
@@ -122,6 +130,14 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		$scope.addYTTrack($scope.newTrackName, $scope.newURL.substring(32));
 	}
 
+	//sign out f(x)
+	$scope.authObj = $firebaseAuth();
+
+	$scope.signOut= function(){
+    	$scope.authObj.$signOut();
+    	$location.path("/login")
+    };
+
 	// Use the below to add new track: 
 	// $scope.addSCTrack("misty","244261890");
 	// $scope.addSCTrack("river","128905480");
@@ -133,7 +149,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
  
 });
 
-app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
+app.controller('loginCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
     $scope.authObj = $firebaseAuth();
 
     $scope.login = function() {
@@ -151,9 +167,29 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 
     }
 });
+app.controller('signupCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
+    $scope.authObj = $firebaseAuth();
+
+    $scope.signUp = function() {
+        console.log($scope.name);
+        console.log($scope.email);
+        console.log($scope.password);
+
+        $scope.authObj.$createUserWithEmailAndPassword($scope.email, $scope.password)
+        .then(function(firebaseUser) {
+            console.log("Created account:", firebaseUser.uid);
+            window.location.assign('http://localhost:8000/#/');
+
+        }).catch(function(error) {
+             console.error("Authentication failed:", error);
+        })
+
+    }
+});
 
 
 //TO-DOS: 
+//1. Sometimes Youtube track does not load properly. 
 //2.  Display all songs in Firebase database in a playlist (CSS work, make it pretty) 
 // The firebase function is already set up. Use function to add track infos. 
 //6.  Fix bug of multiple loaded songs playing at once
