@@ -2,7 +2,7 @@
 
 <input ng-model="trackid">
 <button ng-click="playTrack()">Search</button>
-
+<button ng-click="timing()">Click</button>
 <!-- Split button -->
 <div class="btn-group">
   <button type="button" class="btn btn-danger">Select Track</button>
@@ -11,10 +11,9 @@
     <span class="sr-only">Toggle Dropdown</span>
   </button>
   <ul class="dropdown-menu">
-    <li><a href="#">misty</a></li>
-    <li><a href="#">river</a></li>
-    <li><a href="#">clouds</a></li>
-    <li><a href="#">electric</a></li>
+    <li ng-repeat="menu in menus">
+      <a href="#/">{{menu.soundcloud.name}}</a>
+    </li>
   </ul>
 </div>
 
