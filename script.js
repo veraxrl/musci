@@ -3,7 +3,13 @@ var app = angular.module('musciApp', ["ngRoute","firebase","youtube-embed"]);
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
 		controller: 'mainCtrl',
-		templateUrl: 'templates/home.html'
+		templateUrl: 'templates/home.html',
+		resolve: {
+
+     		"currentAuth": function($firebaseAuth) {
+       		return $firebaseAuth().$requireSignIn();
+     		}
+   		}
 	}).when('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'templates/login.html'
@@ -13,7 +19,7 @@ app.config(function($routeProvider) {
 	})                                      
 });
 
-app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth) {
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location) {
 
 	//Function to add new track:
 	$scope.addSCTrack = function(myName,Id) {
@@ -41,7 +47,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 
 	var scRef = firebase.database().ref().child("tracks").child("SoundCloud");
 	$scope.scMenus= $firebaseArray(scRef);
-	
+
 	$scope.scMenus.$loaded().then(function(data) {
 		$scope.menu.push({"playlist": $scope.scMenus});
 	});
@@ -118,6 +124,16 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		}
 
 	}
+
+	//sign out f(x)
+	$scope.authObj = $firebaseAuth();
+
+	$scope.signOut= function(){
+    	$scope.authObj.$signOut();
+    	$location.path("/login")
+    };
+
+
 
 	// Use the below to add new track: 
 	//$scope.addSCTrack("river","128905480");
