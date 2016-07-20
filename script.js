@@ -119,3 +119,4 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 //URL belongs to a specific API)
 //7.  How to do chrome extension 
 //8.  How to drag and drop songs 
+//9.  Make a log-in page 
