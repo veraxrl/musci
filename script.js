@@ -4,10 +4,12 @@ app.config(function($routeProvider) {
 	$routeProvider.when('/', {
 		controller: 'mainCtrl',
 		templateUrl: 'templates/home.html'
-	})
-	$routeProvider.when('/login', {
+	}).when('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'templates/login.html'
+	}).when('/signup', {
+		controller: 'signupCtrl',
+		templateUrl: 'templates/signup.html'
 	})                                      
 });
 
@@ -112,7 +114,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
  
 });
 
-app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
+app.controller('loginCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
     $scope.authObj = $firebaseAuth();
 
     $scope.login = function() {
@@ -122,6 +124,25 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
         $scope.authObj.$signInWithEmailAndPassword($scope.email, $scope.password)
         .then(function(firebaseUser) {
             console.log("Signed in as:", firebaseUser.uid);
+            window.location.assign('http://localhost:8000/#/');
+
+        }).catch(function(error) {
+             console.error("Authentication failed:", error);
+        })
+
+    }
+});
+app.controller('signupCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
+    $scope.authObj = $firebaseAuth();
+
+    $scope.signUp = function() {
+        console.log($scope.name);
+        console.log($scope.email);
+        console.log($scope.password);
+
+        $scope.authObj.$createUserWithEmailAndPassword($scope.email, $scope.password)
+        .then(function(firebaseUser) {
+            console.log("Created account:", firebaseUser.uid);
             window.location.assign('http://localhost:8000/#/');
 
         }).catch(function(error) {
