@@ -141,7 +141,7 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 //4.  Systematially choose the songs to play. (not hardcode if else statement, based on firebase db and user input)
 
 //5.  Instead of manually type in song name, have a dropdown bar to display all songs in the database 
-
+//6.  Fix bug of multiple loaded songs playing at once
 //Future goals: 
 //6.  Figure out how to add songs to database based on URL (String manipulation, to be able to recognize that the 
 //URL belongs to a specific API)
@@ -149,3 +149,6 @@ app.controller('LoginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 //8.  How to drag and drop songs 
 //9.  Make a log-in page 
 //10. change trackid to an object that we can add to, and thus access them through that. we can then fix many other functions through that
+
+
+
