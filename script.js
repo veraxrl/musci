@@ -11,8 +11,7 @@ app.config(function($routeProvider) {
 	})                                      
 });
 
-app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseAuth) {
-
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth) {
 
 	//Function to add new track:
 	$scope.addSCTrack = function(myName,Id) {
@@ -65,12 +64,18 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseAuth
 
 	$scope.stopPlayer = function() {
 		if ($scope.bestPlayer) $scope.bestPlayer.stopVideo();
-		if ($scope.currentPlayer) $scope.currentPlayer.stop();  //SoundCloud does not have a stop function
+		if ($scope.currentPlayer) {
+			$scope.currentPlayer.pause();
+			$scope.currentPlayer.seek(0);
+		}
 	}
 
 	$scope.startPlayer = function() {
 		if ($scope.bestPlayer) $scope.bestPlayer.playVideo();
-		if ($scope.currentPlayer) $scope.currentPlayer.play();
+		if ($scope.currentPlayer) {
+			$scope.currentPlayer.play();
+		}
+
 	}
 
 	// Use the below to add new track: 
