@@ -9,7 +9,11 @@
 }
 
 .mt{
-	margin-top: 17px;
+	margin-top: 10px;
+	color:#486B7F;
+	background-color: #F5F0CE;
+	border-radius: 10%;
+	font-weight: 500; 
 }
 .nav{
 	position: relative;
@@ -134,7 +138,19 @@ ul {
 	margin-top:-10px;
 	margin-left: -20px;
 	background-color: #CFD8DC;
-	transform: translate(10px, 2px);
+	transform: translate(5px,2px);
+}
+.current-song {
+	font-family: 'Cinzel', serif;
+	color:#486B7F;
+	margin-top: 20px;
+	font-size:15px;
+}
+.add-btn {
+	color:#486B7F;
+	background-color: #F5F0CE;
+	border-radius: 10%;
+	font-weight: 500;
 }
 a {
 	text-decoration: none;
