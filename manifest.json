@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Musci",
+  "description": "This extension facilitates the creation of YouTube playlists that you can access without having a YouTube tab open.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "musiq.png",
+    "default_popup": "popup.html",
+    "default_title": "Click here!"
+  },
+
+  "chrome_url_overrides" : {
+    "newtab": "home.html"
+  },  
+
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
