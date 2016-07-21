@@ -2,8 +2,13 @@ var app = angular.module('musciApp', ["ngRoute","firebase","youtube-embed"]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
-		controller: 'loginCtrl',
+		controller: 'mainCtrl',
 		templateUrl: 'templates/login.html',
+		resolve: {
+			"currentAuth": function($firebaseAuth) {
+       		return $firebaseAuth().$requireSignIn();
+			}
+		}
 	}).when('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'templates/login.html'

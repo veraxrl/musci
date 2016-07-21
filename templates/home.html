@@ -52,7 +52,7 @@
 			<div class="col-sm-6">
 				<div class="search control-track">
 					<ul>
-						<li class="display_songs visiPlay" ng-repeat="p in playMenu" ng-click="assignID(p)">
+						<li class="display_songs visiPlay" ng-repeat="p in playMenu | orderBy: 'name'" ng-click="assignID(p)">
 							<div class="isVisible">
 								<div class="row">
 									<div class="col-sm-1">
