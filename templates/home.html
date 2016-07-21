@@ -4,7 +4,16 @@
 			<h1 class="logo">Musci</h1>
 		</div>
 		<div class='col-sm-2 col-sm-offset-7'>
-			<h4>By Alex Pablo and Vera</h4>
+			<row>
+				<h4>By Alex Pablo and Vera</h4>
+			</row>
+			<row>
+				<div class=" col-sm-2 col-sm-offset-1">
+					<button class="btn btn-danger" ng-click="signOut()">
+						Sign Out
+					</button>
+				</div>
+			</row>
 		</div>
 	</div>
 	<div class="player row">
@@ -16,47 +25,44 @@
 			</button>
 			<button ng-click="pausePlayer()" class="control-btn" ng-if="!control">
 				<div class="buttons"><!-- PAUSE BUTTON -->
-					<img class ="button" src="http://image.flaticon.com/icons/svg/149/149127.svg">
+					<img class ="button" src="http://image.fla
+					ticon.com/icons/svg/149/149127.svg">
 				</div>
 			</button>
 		</div>
+
 		<div class="col-sm-2 col-md-2 col-lg-2"></div>
-		<div class="search col-sm-2 col-md-2 col-lg-2 col-sm-offset-3 control-track">
-			<input ng-model="trackid" class="track-input">
-					<!-- Split button -->
-		</div>
 		<div class="search col-sm-2 col-md-2 col-lg-2 control-track">
-			<div class="btn-group">
-				<!-- <button type="button" class="btn">Select Track</button> -->
-				<button type="button" class="btn dropdown-toggle drop-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Select Track
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown</span>
-				</button>
-				<ul class="dropdown-menu">
-					<li ng-repeat="p in playMenu" ng-click="assignID(p)">
-                			{{p.name}}
-					</li>
-				</ul>
+		</div>
+	</div>
+
+	<div class="poop row add-song">
+		<div class ="col-md-6 col-md-offset-3">
+			<h1>Add YT songs to playlist</h1>
+			Youtube URL: <input ng-model="newURL">
+			Track name: <input ng-model="newTrackName">
+			<button ng-click="refreshDB()">Add</button>
+		</div>
+	</div>
+	<div class="row add-song">
+		<div>
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<div class="search control-track">
+					<ul>
+						<li class="display_songs" ng-repeat="p in playMenu" ng-click="assignID(p)">
+		                	{{p.name}}
+						</li>
+					</ul>	
+				</div>	
 			</div>
 		</div>
 	</div>
-
-	<div class="row add-song">
-		<h1>Add YT songs to playlist</h1>
-		Youtube URL: <input ng-model="newURL">
-		Track name: <input ng-model="newTrackName">
-		<button ng-click="refreshDB()">Add</button>
-	</div>
-
-
-  <div class="row signout">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-2">
-      <button class="btn" ng-click="signOut()">
-      	Sign Out
-      </button>
-    </div>
-  </div>
 		<youtube-video class="youtube" video-url="anotherGoodOne" player="bestPlayer"></youtube-video>
+		<div class="youtube">
+			<div class="search col-sm-2 col-md-2 col-lg-2 col-sm-offset-3 control-track">
+				<input ng-model="trackid" class="track-input">
+						<!-- Split button -->
+			</div>
+		</div>
 </div>
