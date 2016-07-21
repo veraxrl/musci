@@ -38,9 +38,9 @@
 
 	<div class="poop row add-song">
 		<div class ="col-md-6 col-md-offset-3">
-			<h1>Add YT songs to playlist</h1>
-			Youtube URL: <input ng-model="newURL">
-			Track name: <input ng-model="newTrackName">
+			<h1>ADD SONGS TO PLAYLIST</h1>
+			YouTube URL: <input ng-model="newURL">
+			Track Name: <input ng-model="newTrackName">
 			<button ng-click="refreshDB()">Add</button>
 		</div>
 	</div>
@@ -50,9 +50,27 @@
 			<div class="col-sm-6">
 				<div class="search control-track">
 					<ul>
-						<li class="display_songs" ng-repeat="p in playMenu" ng-click="assignID(p)">
-		                	{{p.name}}
-		                	<button class="remove-btn" ng-click="deleteTrack(p)">Remove</button>
+						<li class="display_songs visiPlay" ng-repeat="p in playMenu" ng-click="assignID(p)">
+							<div class="isVisible">
+								<button ng-click="startPlayer()" class="control-btn" ng-if="control">
+									<div class="buttons"> <!-- PLay BUTTON -->
+										<img class ="button tiny" src="http://image.flaticon.com/icons/svg/149/149125.svg">
+									</div>
+								</button>
+								<button ng-click="pausePlayer()" class="control-btn" ng-if="!control">
+									<div class="buttons"><!-- PAUSE BUTTON -->
+										<img class ="button tiny" src="http://image.fla
+										ticon.com/icons/svg/149/149127.svg">
+									</div>
+								</button>
+								{{p.name}}
+								<!-- <button class="remove-btn" ng-click="deleteTrack(p)">Remove</button> -->
+								<button ng-click="deleteTrack(p)" class="remove-btn">
+									<div class="buttons"><!-- PAUSE BUTTON -->
+										<img class ="button tiny" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/delete_round_button-128.png">
+									</div>
+								</button>
+							</div>	
 						</li>
 					</ul>	
 				</div>	
