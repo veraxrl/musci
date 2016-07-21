@@ -9,21 +9,22 @@
 	</div>
 	<div class="player row">
 		<div class="col-sm-4 col-sm-offset-1">
-			<button ng-click="startPlayer()" class="control-btn">
-				<div class="buttons">
+			<button ng-click="startPlayer()" class="control-btn" ng-if="control">
+				<div class="buttons"> <!-- PLay BUTTON -->
 					<img class ="button" src="http://image.flaticon.com/icons/svg/149/149125.svg">
 				</div>
 			</button>
-			<button ng-click="stopPlayer()" class="control-btn">
-				<div class="buttons">
-					<img class ="button" src="http://image.flaticon.com/icons/svg/149/149126.svg">
-				</div>
-			</button>
-			<button ng-click="pausePlayer()" class="control-btn">
-				<div class="buttons">
+			<button ng-click="pausePlayer()" class="control-btn" ng-if="!control">
+				<div class="buttons"><!-- PAUSE BUTTON -->
 					<img class ="button" src="http://image.flaticon.com/icons/svg/149/149127.svg">
 				</div>
 			</button>
+			<button ng-click="stopPlayer()" class="control-btn">
+				<div class="buttons"> 
+					<img class ="button" src="http://image.flaticon.com/icons/svg/149/149126.svg">
+				</div>
+			</button>
+			
 		</div>
 		<div class="search col-sm-2 col-sm-offset-3">
 			<input ng-model="trackid">
@@ -55,7 +56,7 @@
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-2">
-      <button class="btn btn-danger" ng-click="signOut()">
+      <button class="btn" ng-click="signOut()">
       	Sign Out
       </button>
     </div>

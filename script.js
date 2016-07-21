@@ -33,6 +33,7 @@ app.run(["$rootScope", "$location", function($rootScope, $location) {
 
 
 app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location) {
+	$scope.control = true; //true = stopped, false = playing
 
 	//Function to add new track:
 	$scope.addSCTrack = function(myName,Id) {
@@ -104,7 +105,6 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 			$scope.anotherGoodOne = 'https://www.youtube.com/watch?v='+$scope.currentID;
 			$scope.currentPlayer= false;
 		} 
-
 	}
 
 	$scope.assignID = function(p) {
@@ -118,8 +118,10 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 
 	//Function to control track: (play, pause, stop)
 	$scope.pausePlayer = function() {
+		console.log("in pausePlayer");
 		if ($scope.tracktype==="YT") $scope.bestPlayer.pauseVideo();
 		if ($scope.tracktype==="SC") $scope.currentPlayer.pause();
+		$scope.control = true;
 	} 
 
 	$scope.stopPlayer = function() {
@@ -131,11 +133,12 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	}
 
 	$scope.startPlayer = function() {
+		console.log("in startPlayer");
 		if ($scope.tracktype==="YT") $scope.bestPlayer.playVideo();
 		if ($scope.tracktype==="SC") {
 			$scope.currentPlayer.play();
 		}
-
+		$scope.control = false;
 	}
 
 	$scope.refreshDB = function() {
@@ -159,6 +162,11 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	// $scope.$on('youtube.player.ended', function ($event, player) {
 	// 	bestPlayer.playVideo();
 	// });
+
+		// element(by.model('checked')).click();
+
+		// $scope.$on(youtube.player.playing){
+
  
 });
 
