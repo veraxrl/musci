@@ -1,6 +1,10 @@
 
 .mt{
 	margin-top: 17px;
+	color:#486B7F;
+	background-color: #F5F0CE;
+	border-radius: 10%;
+	font-weight: 500; 
 }
 .nav{
 	background-color:#486B7F;
@@ -107,4 +111,16 @@ ul {
 }
 .main{
 	background-color: #CFD8DC;
+}
+.current-song {
+	font-family: 'Cinzel', serif;
+	color:#486B7F;
+	margin-top: 20px;
+	font-size:15px;
+}
+.add-btn {
+	color:#486B7F;
+	background-color: #F5F0CE;
+	border-radius: 10%;
+	font-weight: 500;
 }

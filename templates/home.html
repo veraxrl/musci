@@ -9,7 +9,7 @@
 			</row>
 			<row>
 				<div class=" col-sm-2 col-sm-offset-1">
-					<button class="btn btn-danger mt" ng-click="signOut()">
+					<button class="btn mt" ng-click="signOut()">
 						Sign Out
 					</button>
 				</div>
@@ -31,17 +31,19 @@
 			</button>
 		</div>
 
-		<div class="col-sm-2 col-md-2 col-lg-2"></div>
+		<div class="col-sm-4 col-md-4 col-lg-4 current-song">
+			<p>Currently Playing  : {{trackid}}</p>
+		</div>
 		<div class="search col-sm-2 col-md-2 col-lg-2 control-track">
 		</div>
 	</div>
 
 	<div class="poop row add-song">
 		<div class ="col-md-6 col-md-offset-3">
-			<h1>ADD SONGS TO PLAYLIST</h1>
+			<h1 style="font-family: 'Cinzel', serif; font-size:30px;">ADD SONGS TO PLAYLIST</h1>
 			YouTube URL: <input ng-model="newURL">
 			Track Name: <input ng-model="newTrackName">
-			<button ng-click="refreshDB()">Add</button>
+			<button ng-click="refreshDB()" class="add-btn">Add</button>
 		</div>
 	</div>
 	<div class="row add-song">
