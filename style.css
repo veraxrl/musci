@@ -129,18 +129,14 @@ ul {
 	font-family: 'Josefin Sans', sans-serif;
 }
 .tiny {
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	margin-top:-10px;
 	margin-left: -20px;
+	background-color: #CFD8DC;
+	transform: translate(10px, 2px);
 }
-<<<<<<< HEAD
 a {
 	text-decoration: none;
 	color: inherit;
 }
-=======
-/**{
-	background-color: #CFD8DC;
-}*/
->>>>>>> 4fbceaba7d073083b738e7a49dab5f8e8dce2e00
