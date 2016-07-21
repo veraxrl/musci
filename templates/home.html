@@ -38,12 +38,20 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li ng-repeat="p in playMenu" ng-click="assignID(p)">
-                {{p.name}}
+                			{{p.name}}
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<h1>Add YT songs to playlist</h1>
+		Youtube URL: <input ng-model="newURL">
+		Track name: <input ng-model="newTrackName">
+		<button ng-click="refreshDB()">Add</button>
+	</div>
+
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-2">
