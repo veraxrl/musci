@@ -1,4 +1,7 @@
 
+.mt{
+	margin-top: 17px;
+}
 .nav{
 	background-color:#486B7F;
 	height:125px;
@@ -35,6 +38,7 @@
 h4{
 	font-family: 'Shadows Into Light', cursive;
 	color:#C9EDF8;
+	margin-top:20px;
 }
 .transform_off {
 	position:absolute;
@@ -54,6 +58,11 @@ h4{
 .isVisible button {
 	width: 20px;
 	height: 20px;
+}
+
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
 }
 .display_songs {
 	background-color: inherit;
@@ -79,6 +88,9 @@ h4{
 ul {
 	list-style: none;
 }
+.deleteBtn{
+
+}
 .poop{
 	text-align: center;
 }
@@ -92,4 +104,7 @@ ul {
 	height: 30px;
 	margin-top:-10px;
 	margin-left: -20px;
+}
+.main{
+	background-color: #CFD8DC;
 }
