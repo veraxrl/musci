@@ -16,11 +16,11 @@
 	padding: 0;
 	width:50px;
 }
-/*.youtube{
+.youtube{
 	position:absolute;
 	top:0;
 	left:-2000px;
-}*/
+}
 .player{
 	height:75px;
 	background-color:#C9EDF8;
@@ -35,21 +35,31 @@ h4{
 	font-family: 'Shadows Into Light', cursive;
 	color:#C9EDF8;
 }
-.drop-btn {
-	background-color: #486B7F;
-	color:#C9EDF8;
-	font-family: 'Shadows Into Light', cursive;
-}
-.drop-btn:hover { 
-	color:#C9EDF8;
+.transform_off {
+	position:absolute;
+	top:0;
+	left:-2000px;
 }
 .track-input {
 	width: 150px;
 	height:30px;
+}
+.display_songs {
+	background-color: inherit;
+	color:#486B7F;
+	font-size: 18px;
+	font-weight: bolder;
+	font-family: 'Shadows Into Light', cursive;
+}
+.display_songs:hover {
+	color:#C9EDF8;
 }
 .control-track {
 	margin-top: 13px;
 }
 .add-song {
 	background-color: #CFD8DC;
+}
+ul {
+	list-style: none;
 }
