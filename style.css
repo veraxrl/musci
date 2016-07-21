@@ -16,11 +16,11 @@
 	padding: 0;
 	width:50px;
 }
-.youtube{
+/*.youtube{
 	position:absolute;
 	top:0;
 	left:-2000px;
-}
+}*/
 .player{
 	height:75px;
 	background-color:#C9EDF8;

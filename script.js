@@ -46,15 +46,25 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	    });
   	};
 
+  	//Load length of YT database: 
+  	var ref2= firebase.database().ref().child("tracks").child("Youtube");
+	$scope.a= $firebaseArray(ref2);
+	$scope.a.$loaded(function() {
+		console.log($scope.a.numTrack);
+	})
+		
   	//Function to add Youtube track:
   	$scope.addYTTrack = function(myName,Id) {
 		var ref = firebase.database().ref().child("tracks").child("Youtube");
+		console.log("num", ref);
 		$scope.tracks= $firebaseArray(ref);
+
 	    $scope.tracks.$add({
 	    	name: myName,
 	    	id: Id,
-	    	type: "YT"
+	    	type: "YT"	    
 	    });
+	    //$scope.a.numTrack= $scope.trackLength+1;
   	};
 	
   	//Creating the dropdown menu items:                            
@@ -133,7 +143,6 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	}
 
 	$scope.startPlayer = function() {
-		console.log("in startPlayer");
 		if ($scope.tracktype==="YT") $scope.bestPlayer.playVideo();
 		if ($scope.tracktype==="SC") {
 			$scope.currentPlayer.play();
@@ -158,6 +167,20 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	// $scope.addSCTrack("misty","244261890");
 	// $scope.addSCTrack("river","128905480");
 
+	//Move down the playlist:
+	// $scope.$on('youtube.player.ended', function ($event, player) {
+	// 	console.log($scope.playMenu[3]);
+	// 	$scope.currentID= "VUbOGrq8rmE";
+	// 	$scope.trackid = "The Pines";
+	// 	$scope.tracktype= "YT";
+	// 	$scope.playTrack();
+	// });
+
+	//Auto play:
+	$scope.$on('youtube.player.ready',function($event,player) {
+		$scope.startPlayer();
+	});
+
 	//Auto play Function:
 	// $scope.$on('youtube.player.ended', function ($event, player) {
 	// 	bestPlayer.playVideo();
@@ -166,7 +189,6 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		// element(by.model('checked')).click();
 
 		// $scope.$on(youtube.player.playing){
-
  
 });
 
@@ -210,17 +232,15 @@ app.controller('signupCtrl', function($scope, $routeParams, $firebaseObject, $fi
 
 
 //TO-DOS: 
-//1. Sometimes Youtube track does not load properly. 
-//2.  Display all songs in Firebase database in a playlist (CSS work, make it pretty) 
-// The firebase function is already set up. Use function to add track infos. 
-//6.  Fix bug of multiple loaded songs playing at once
+//1. Sometimes Youtube track does not load properly. (internet problem)
+//2.  Display all songs in Firebase database in a playlist (CSS work, make it pretty) (done!)
+//6.  Fix bug of multiple loaded songs playing at once (done!)
 
 //Future goals: 
-//6.  Figure out how to add songs to database based on URL (String manipulation, to be able to recognize that the 
-//URL belongs to a specific API)
+//1.  Being able to remove songs
+//2.  Queue songs 
 //7.  How to do chrome extension 
 //8.  How to drag and drop songs 
-//9.  Make a log-in page 
 //10. change trackid to an object that we can add to, and thus access them through that. we can then fix many other functions through that
 
 
