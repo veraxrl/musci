@@ -52,6 +52,7 @@
 					<ul>
 						<li class="display_songs" ng-repeat="p in playMenu" ng-click="assignID(p)">
 		                	{{p.name}}
+		                	<button class="remove-btn" ng-click="deleteTrack(p)">Remove</button>
 						</li>
 					</ul>	
 				</div>	

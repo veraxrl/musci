@@ -2,8 +2,8 @@ var app = angular.module('musciApp', ["ngRoute","firebase","youtube-embed"]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
-		controller: 'mainCtrl',
-		templateUrl: 'templates/home.html',
+		controller: 'loginCtrl',
+		templateUrl: 'templates/login.html',
 	}).when('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'templates/login.html'
@@ -17,18 +17,7 @@ app.config(function($routeProvider) {
 
 });
 
-//Redirect to login, if not signed in
-// app.run(["$rootScope", "$location", function($rootScope, $location) {
-//  $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
-//    // We can catch the error thrown when the $requireSignIn promise is rejected
-//    // and redirect the user back to the home page
-//    if (error === "AUTH_REQUIRED") {
-//      $location.path("/login");
-//    }
-//  });
-// }]);
-
-app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location, $routeParams) {
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location, $routeParams, $route) {
 
 	$scope.control = true; //true = stopped, false = playing
 
@@ -66,6 +55,17 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 				console.log(error);
 			});
   	};
+
+  	$scope.deleteTrack = function(p) {
+  		var ref = firebase.database().ref().child("users").child($routeParams.userID).child("tracks").child(p.id);
+  		var obj = $firebaseObject(ref);
+		obj.$remove().then(function(ref) {
+		  	console.log("remove track named "+p.name);
+		  	$route.reload();
+		}, function(error) {
+		  console.log("Error:", error);
+		});
+  	}
 	
   	//Creating the dropdown menu items:                            
 	$scope.menu = [];
@@ -94,10 +94,6 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		console.log($scope.playMenu);
 
 	});	
-
-
-	// $scope.menus = $scope.ytMenus;
-	// $scope.menus.push($scope.scMenus);
 	
   	//Function to select track, triggered by ng-click:
 	$scope.playTrack = function() {
@@ -153,6 +149,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	$scope.refreshDB = function() {
 		console.log($scope.newURL.substring(32));
 		$scope.addYTTrack($scope.newTrackName, $scope.newURL.substring(32));
+		$route.reload();
 	}
 
 	//sign out f(x)
@@ -162,10 +159,6 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
     	$scope.authObj.$signOut();
     	$location.path("/login")
     };
-
-	// Use the below to add new track: 
-	// $scope.addSCTrack("misty","244261890");
-	// $scope.addSCTrack("river","128905480");
 
 	//Move down the playlist:
 	// $scope.$on('youtube.player.ended', function ($event, player) {
@@ -235,6 +228,7 @@ app.controller('signupCtrl', function($scope, $http, $firebaseObject, $firebaseA
 			$scope.user.$save().then(function(ref) {
 				console.log($scope.user);
 				ref.key === firebaseUser.uid;
+				window.location.assign('http://localhost:8000/#/users/'+firebaseUser.uid);
 			}, function (error) {
 				console.log(error);
 			});
@@ -263,6 +257,3 @@ app.controller('signupCtrl', function($scope, $http, $firebaseObject, $firebaseA
 //7.  How to do chrome extension 
 //8.  How to drag and drop songs 
 //10. change trackid to an object that we can add to, and thus access them through that. we can then fix many other functions through that
-
-
-
