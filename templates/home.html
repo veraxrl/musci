@@ -20,7 +20,7 @@
 				</div>
 			</button>
 		</div>
-		<div class="search col-sm-2 col-sm-offset-3">
+		<div class="search col-sm-2 col-sm-offset-2">
 			<input ng-model="trackid">
 					<!-- Split button -->
 		</div>
@@ -38,6 +38,11 @@
 				</ul>
 			</div>
 		</div>
+		<div class=" col-sm-2 col-sm-offset-1">
+			<button class="btn btn-danger" ng-click="signOut()">
+			      		Sign Out
+			</button>
+		</div>
 	</div>
 
 	<div class="row">
@@ -46,14 +51,5 @@
 		Track name: <input ng-model="newTrackName">
 		<button ng-click="refreshDB()">Add</button>
 	</div>
-
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-2">
-      <button class="btn" ng-click="signOut()">
-      	Sign Out
-      </button>
-    </div>
-  </div>
 		<youtube-video class="youtube" video-url="anotherGoodOne" player="bestPlayer"></youtube-video>
 </div>
