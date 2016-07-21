@@ -16,7 +16,10 @@ app.config(function($routeProvider) {
 	}).when('/signup', {
 		controller: 'signupCtrl',
 		templateUrl: 'templates/signup.html'
-	})                                      
+	}).when('/users/:userID', {
+		controller: 'mainCtrl',
+		templateUrl: 'templates/home.html'
+	})                                     
 });
 
 //Redirect to login, if not signed in
@@ -30,9 +33,7 @@ app.run(["$rootScope", "$location", function($rootScope, $location) {
  });
 }]);
 
-
-
-app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location) {
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location, $routeParams) {
 	$scope.control = true; //true = stopped, false = playing
 
 	//Function to add new track:
@@ -55,30 +56,33 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		
   	//Function to add Youtube track:
   	$scope.addYTTrack = function(myName,Id) {
-		var ref = firebase.database().ref().child("tracks").child("Youtube");
-		console.log("num", ref);
-		$scope.tracks= $firebaseArray(ref);
+		var ref = firebase.database().ref().child("users").child($routeParams.userID).child("tracks").child(Id);
+		$scope.track= $firebaseObject(ref);
 
-	    $scope.tracks.$add({
-	    	name: myName,
-	    	id: Id,
-	    	type: "YT"	    
-	    });
-	    //$scope.a.numTrack= $scope.trackLength+1;
+			console.log("adding track");
+			$scope.track.name= myName;
+			$scope.track.id= Id;
+			$scope.track.type= "YT";
+
+			$scope.track.$save().then(function(ref) {
+				ref.key === Id;
+			}, function (error) {
+				console.log(error);
+			});
   	};
 	
   	//Creating the dropdown menu items:                            
 	$scope.menu = [];
 	$scope.playMenu= [];
 
-	var scRef = firebase.database().ref().child("tracks").child("SoundCloud");
-	$scope.scMenus= $firebaseArray(scRef);
+	// var scRef = firebase.database().ref().child("tracks").child("SoundCloud");
+	// $scope.scMenus= $firebaseArray(scRef);
 
-	$scope.scMenus.$loaded().then(function(data) {
-		$scope.menu.push({"playlist": $scope.scMenus});
-	});
+	// $scope.scMenus.$loaded().then(function(data) {
+	// 	$scope.menu.push({"playlist": $scope.scMenus});
+	// });
 
-	var ytRef = firebase.database().ref().child("tracks").child("Youtube");
+	var ytRef = firebase.database().ref().child("users").child($routeParams.userID).child("tracks");
 	$scope.ytMenus = $firebaseArray(ytRef);
 
 	$scope.ytMenus.$loaded().then(function(data) {
@@ -202,7 +206,7 @@ app.controller('loginCtrl', function($scope, $routeParams, $firebaseObject, $fir
         $scope.authObj.$signInWithEmailAndPassword($scope.email, $scope.password)
         .then(function(firebaseUser) {
             console.log("Signed in as:", firebaseUser.uid);
-            window.location.assign('http://localhost:8000/#/');
+            window.location.assign('http://localhost:8000/#/users/'+firebaseUser.uid);
 
         }).catch(function(error) {
              console.error("Authentication failed:", error);
@@ -210,24 +214,45 @@ app.controller('loginCtrl', function($scope, $routeParams, $firebaseObject, $fir
 
     }
 });
-app.controller('signupCtrl', function($scope, $routeParams, $firebaseObject, $firebaseAuth) {
+app.controller('signupCtrl', function($scope, $http, $firebaseObject, $firebaseArray,$routeParams,$firebaseAuth) {
     $scope.authObj = $firebaseAuth();
 
-    $scope.signUp = function() {
-        console.log($scope.name);
-        console.log($scope.email);
-        console.log($scope.password);
+    $scope.show = function() {
+		console.log($scope.name);
+		console.log($scope.email);
+		console.log($scope.password);
+	}
 
-        $scope.authObj.$createUserWithEmailAndPassword($scope.email, $scope.password)
-        .then(function(firebaseUser) {
-            console.log("Created account:", firebaseUser.uid);
-            window.location.assign('http://localhost:8000/#/');
+	$scope.createUser = function() {
+		$scope.authObj = $firebaseAuth();
+		$scope.authObj.$createUserWithEmailAndPassword($scope.email,$scope.password)
+		.then(function(firebaseUser) {
+			//add user for printout:
+			console.log("my uid is"+firebaseUser.uid);
+			var ref = firebase.database().ref().child("users").child(firebaseUser.uid);
+			$scope.user= $firebaseObject(ref);
 
-        }).catch(function(error) {
-             console.error("Authentication failed:", error);
-        })
+			$scope.user.uid= firebaseUser.uid;
+			$scope.user.email= $scope.email;
+			$scope.user.password= $scope.password;
 
-    }
+			$scope.user.$save().then(function(ref) {
+				console.log($scope.user);
+				ref.key === firebaseUser.uid;
+			}, function (error) {
+				console.log(error);
+			});
+
+		    console.log("User " + firebaseUser.uid + " created successfully!");
+		    console.log($scope.user);
+		    }).catch(function(error) {
+		    	console.error("Error: ", error);
+		    	$scope.isError= true;
+		    	$scope.errormsg=error.message;
+		  	})
+
+	}
+
 });
 
 
