@@ -37,7 +37,7 @@
 	</div>
 
 	<div class="poop row add-song">
-		<div class ="col-md-6 col-md-offset-3">
+		<div class ="col-sm-6 col-sm-offset-3">
 			<h1>ADD SONGS TO PLAYLIST</h1>
 			YouTube URL: <input ng-model="newURL">
 			Track Name: <input ng-model="newTrackName">
@@ -53,7 +53,7 @@
 						<li class="display_songs visiPlay" ng-repeat="p in playMenu" ng-click="assignID(p)">
 							<div class="isVisible">
 								<div class="row">
-									<div class="col-md-1">
+									<div class="col-sm-1">
 										<button ng-click="startPlayer()" class="control-btn" ng-if="control">
 											<div class="buttons"> <!-- PLay BUTTON -->
 												<img class ="button tiny" src="http://image.flaticon.com/icons/svg/149/149125.svg">
@@ -66,11 +66,11 @@
 											</div>
 										</button>
 									</div>
-									<div class="col-md-5 col-md-offset-3">
+									<div class="col-sm-5 col-sm-offset-3">
 										{{p.name}}
 										<!-- <button class="remove-btn" ng-click="deleteTrack(p)">Remove</button> -->
 									</div>
-									<div class="deleteBtn col-md-1 col-md-offset-2">
+									<div class="deleteBtn col-sm-1 col-sm-offset-2">
 										<button ng-click="deleteTrack(p)" class="remove-btn">
 											<div class="buttons"><!-- PAUSE BUTTON -->
 												<img class ="button tiny" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/delete_round_button-128.png">
