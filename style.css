@@ -8,6 +8,9 @@
 	background-color: #CFD8DC;
 }
 
+.mt{
+	margin-top: 17px;
+}
 .nav{
 	position: relative;
 	left: 0;
@@ -52,6 +55,7 @@
 h4{
 	font-family: 'Shadows Into Light', cursive;
 	color:#C9EDF8;
+	margin-top:20px;
 }
 .transform_off {
 	position:absolute;
@@ -111,6 +115,9 @@ h4{
 ul {
 	list-style: none;
 }
+.deleteBtn{
+
+}
 .poop{
 	text-align: center;
 	font-weight: 300;
@@ -127,7 +134,13 @@ ul {
 	margin-top:-10px;
 	margin-left: -20px;
 }
+<<<<<<< HEAD
 a {
 	text-decoration: none;
 	color: inherit;
 }
+=======
+/**{
+	background-color: #CFD8DC;
+}*/
+>>>>>>> 4fbceaba7d073083b738e7a49dab5f8e8dce2e00
