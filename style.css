@@ -51,6 +51,11 @@ h4{
 	font-size: 18px;
 	font-weight: bolder;
 	font-family: 'Shadows Into Light', cursive;
+	border: solid .5px #6E797F;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	text-align: center;
 }
 .display_songs:hover {
 	color:#C9EDF8;
