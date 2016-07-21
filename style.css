@@ -1,7 +1,20 @@
+.container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: #CFD8DC;
+}
 
 .nav{
+	position: relative;
+	left: 0;
+	right: 0;
 	background-color:#486B7F;
 	height:125px;
+	width: 100%;
 }
 .logo{
 	color:#C9EDF8;
@@ -27,6 +40,10 @@
 	background-color:#C9EDF8;
 	padding-bottom: 25px;
 	padding-top: 8px;
+}
+.center {
+	text-align: center;
+	color: #486B7F;
 }
 .search{
 	margin-top:22px;
@@ -55,6 +72,21 @@ h4{
 	width: 20px;
 	height: 20px;
 }
+.disp {
+	background-color: #CFD8DC;
+	color:#486B7F;
+	font-size: 18px;
+	font-weight: 300;
+	font-family: 'Josefin Sans', sans-serif;
+	width: 100%;
+	position: relative;
+	left: -15px;
+	right: 0;
+}
+.bump {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 .display_songs {
 	background-color: inherit;
 	color:#486B7F;
@@ -81,6 +113,8 @@ ul {
 }
 .poop{
 	text-align: center;
+	font-weight: 300;
+	font-family: 'Josefin Sans', sans-serif;
 }
 .remove-btn {
 	color:black;
@@ -92,4 +126,8 @@ ul {
 	height: 30px;
 	margin-top:-10px;
 	margin-left: -20px;
+}
+a {
+	text-decoration: none;
+	color: inherit;
 }

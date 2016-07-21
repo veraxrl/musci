@@ -1,22 +1,41 @@
-<center><div class="signup">
-    <h2>Sign up</h2>
-    <form ng-submit="signUp()">
-      <div class="line row">
-        <label class="col-md-6">Email</label>
-        <input class="col-md-6" ng-model="email">
+<div class ="container">
+    <div class="row">
+      <div class="nav">
+        <div class="col-sm-3">
+          <h1 class="logo">Musci</h1>
+        </div>
+        <div class='col-sm-2 col-sm-offset-7'>
+          <row>
+            <h4>By Alex Pablo and Vera</h4>
+          </row>
+        </div>
       </div>
-      
-      <div class="line row">
-        <label class="col-md-6">Password</label>
-        <input class="col-md-6" ng-model="password">
-      </div>
-      
-      <div class="row">
-        <button ng-click="createUser()">Sign up</button>
-        <button ng-click="show()">Show</button>
-      </div>
-      
-      
-    </form>
+    </div>
+    <div class="player center row poop">
+        <h2>Sign Up</h2>
+    </div>  
 
-</div></center>
+    <center class="disp">
+            <form ng-submit="signUp()">
+                <div class="line row bump">
+                    <label class="col-sm-2 col-sm-offset-4">
+                        Email :
+                    </label>
+                    <input class="col-sm-3" ng-model="email">
+                </div>
+            
+                <div class="line row bump">
+                    <label class="col-sm-2 col-sm-offset-4">
+                        Password :
+                    </label>
+                    <input class="col-sm-3" ng-model="password">
+                </div>
+                
+                <div class="row">
+                    <button class="bump" ng-click="createUser()">
+                        Create Account!
+                    </button>
+                </div>
+            </form>
+    </center>
+</div>
