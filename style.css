@@ -15,6 +15,7 @@
 	margin: 0;
 	padding: 0;
 	width:50px;
+	outline:none;
 }
 .youtube{
 	position:absolute;
