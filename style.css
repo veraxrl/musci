@@ -35,3 +35,21 @@ h4{
 	font-family: 'Shadows Into Light', cursive;
 	color:#C9EDF8;
 }
+.drop-btn {
+	background-color: #486B7F;
+	color:#C9EDF8;
+	font-family: 'Shadows Into Light', cursive;
+}
+.drop-btn:hover { 
+	color:#C9EDF8;
+}
+.track-input {
+	width: 150px;
+	height:30px;
+}
+.control-track {
+	margin-top: 13px;
+}
+.add-song {
+	background-color: #CFD8DC;
+}

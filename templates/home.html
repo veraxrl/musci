@@ -20,14 +20,16 @@
 				</div>
 			</button>
 		</div>
-		<div class="search col-sm-2 col-sm-offset-3">
-			<input ng-model="trackid">
+		<div class="col-sm-2 col-md-2 col-lg-2"></div>
+		<div class="search col-sm-2 col-md-2 col-lg-2 col-sm-offset-3 control-track">
+			<input ng-model="trackid" class="track-input">
 					<!-- Split button -->
 		</div>
-		<div class="search col-sm-2">
+		<div class="search col-sm-2 col-md-2 col-lg-2 control-track">
 			<div class="btn-group">
-				<button type="button" class="btn">Select Track</button>
-				<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<!-- <button type="button" class="btn">Select Track</button> -->
+				<button type="button" class="btn dropdown-toggle drop-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Select Track
 					<span class="caret"></span>
 					<span class="sr-only">Toggle Dropdown</span>
 				</button>
@@ -40,14 +42,15 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row add-song">
 		<h1>Add YT songs to playlist</h1>
 		Youtube URL: <input ng-model="newURL">
 		Track name: <input ng-model="newTrackName">
 		<button ng-click="refreshDB()">Add</button>
 	</div>
 
-  <div class="row">
+
+  <div class="row signout">
     <div class="col-sm-1"></div>
     <div class="col-sm-2">
       <button class="btn" ng-click="signOut()">
