@@ -19,6 +19,8 @@ app.config(function($routeProvider) {
 
 app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location, $routeParams, $route) {
 
+	console.log();
+
 	$scope.control = true; //true = stopped, false = playing
 
 	//Function to add new track:
