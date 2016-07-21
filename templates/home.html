@@ -1,15 +1,15 @@
-<div class ="container">
+<div class ="container-fluid">
 	<div class="row nav">
-		<div class="col-sm-3">
+		<div class="col-sm-3 col-sm-offset-1">
 			<h1 class="logo">Musci</h1>
 		</div>
-		<div class='col-sm-2 col-sm-offset-7'>
+		<div class='col-sm-2 col-sm-offset-6'>
 			<row>
 				<h4>By Alex Pablo and Vera</h4>
 			</row>
 			<row>
 				<div class=" col-sm-2 col-sm-offset-1">
-					<button class="btn btn-danger" ng-click="signOut()">
+					<button class="btn btn-danger mt" ng-click="signOut()">
 						Sign Out
 					</button>
 				</div>
@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div class="player row">
-		<div class="col-sm-3">
+		<div class="col-sm-3 col-sm-offset-1">
 			<button ng-click="startPlayer()" class="control-btn" ng-if="control">
 				<div class="buttons"> <!-- PLay BUTTON -->
 					<img class ="button" src="http://image.flaticon.com/icons/svg/149/149125.svg">
@@ -52,24 +52,32 @@
 					<ul>
 						<li class="display_songs visiPlay" ng-repeat="p in playMenu" ng-click="assignID(p)">
 							<div class="isVisible">
-								<button ng-click="startPlayer()" class="control-btn" ng-if="control">
-									<div class="buttons"> <!-- PLay BUTTON -->
-										<img class ="button tiny" src="http://image.flaticon.com/icons/svg/149/149125.svg">
+								<div class="row">
+									<div class="col-md-1">
+										<button ng-click="startPlayer()" class="control-btn" ng-if="control">
+											<div class="buttons"> <!-- PLay BUTTON -->
+												<img class ="button tiny" src="http://image.flaticon.com/icons/svg/149/149125.svg">
+											</div>
+										</button>
+										<button ng-click="pausePlayer()" class="control-btn" ng-if="!control">
+											<div class="buttons"><!-- PAUSE BUTTON -->
+												<img class ="button tiny" src="http://image.fla
+												ticon.com/icons/svg/149/149127.svg">
+											</div>
+										</button>
 									</div>
-								</button>
-								<button ng-click="pausePlayer()" class="control-btn" ng-if="!control">
-									<div class="buttons"><!-- PAUSE BUTTON -->
-										<img class ="button tiny" src="http://image.fla
-										ticon.com/icons/svg/149/149127.svg">
+									<div class="col-md-5 col-md-offset-3">
+										{{p.name}}
+										<!-- <button class="remove-btn" ng-click="deleteTrack(p)">Remove</button> -->
 									</div>
-								</button>
-								{{p.name}}
-								<!-- <button class="remove-btn" ng-click="deleteTrack(p)">Remove</button> -->
-								<button ng-click="deleteTrack(p)" class="remove-btn">
-									<div class="buttons"><!-- PAUSE BUTTON -->
-										<img class ="button tiny" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/delete_round_button-128.png">
+									<div class="deleteBtn col-md-1 col-md-offset-2">
+										<button ng-click="deleteTrack(p)" class="remove-btn">
+											<div class="buttons"><!-- PAUSE BUTTON -->
+												<img class ="button tiny" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/delete_round_button-128.png">
+											</div>
+										</button>
 									</div>
-								</button>
+								</div>	
 							</div>	
 						</li>
 					</ul>	
