@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
 //  });
 // }]);
 
-app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location, $routeParams) {
+app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObject, $firebaseAuth, $location, $routeParams, $route) {
 
 	$scope.control = true; //true = stopped, false = playing
 
@@ -153,6 +153,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 	$scope.refreshDB = function() {
 		console.log($scope.newURL.substring(32));
 		$scope.addYTTrack($scope.newTrackName, $scope.newURL.substring(32));
+		$route.reload();
 	}
 
 	//sign out f(x)
