@@ -45,6 +45,16 @@ h4{
 	width: 150px;
 	height:30px;
 }
+.isVisible button {
+	display: none;
+}
+.isVisible:hover button {
+	display: block;
+}
+.isVisible button {
+	width: 20px;
+	height: 20px;
+}
 .display_songs {
 	background-color: inherit;
 	color:#486B7F;
@@ -71,4 +81,6 @@ ul {
 }
 .poop{
 	text-align: center;
+	font-weight: 500;
+	font-family: 'Josefin Sans', sans-serif;
 }
