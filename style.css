@@ -1,4 +1,8 @@
 
+.sign{
+	text-align: right;
+	margin-left: 63px;
+}
 .container {
 	position: absolute;
 	top: 0;
@@ -159,4 +163,7 @@ ul {
 a {
 	text-decoration: none;
 	color: inherit;
+}
+.logoz{
+	width:52px;
 }
