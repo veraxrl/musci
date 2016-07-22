@@ -168,11 +168,18 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		$scope.isPlaying = true;
 	}
 
+
+// GABE THIS IS THE FUNCTION THAT PULLS YOUTUBE LINKS
 	$scope.refreshDB = function() {
 		console.log($scope.newURL.substring(32));
 		$scope.addYTTrack($scope.newTrackName, $scope.newURL.substring(32));
 		$route.reload();
 	}
+
+
+
+
+	// this one bru ^^^
 
 	//sign out f(x)
 	$scope.authObj = $firebaseAuth();
