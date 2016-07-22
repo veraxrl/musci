@@ -53,6 +53,9 @@
 	text-align: center;
 	color: #486B7F;
 }
+.move {
+	transform: translate(60px);
+}
 .search{
 	margin-top:22px;
 	height:100%;
