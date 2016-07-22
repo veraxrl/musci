@@ -1,27 +1,10 @@
-.container {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-	background-color: #CFD8DC;
-}
 
 .mt{
-	margin-top: 10px;
-	color:#486B7F;
-	background-color: #F5F0CE;
-	border-radius: 10%;
-	font-weight: 500; 
+	margin-top: 17px;
 }
 .nav{
-	position: relative;
-	left: 0;
-	right: 0;
 	background-color:#486B7F;
 	height:125px;
-	width: 100%;
 }
 .logo{
 	color:#C9EDF8;
@@ -37,6 +20,15 @@
 	width:50px;
 	outline:none;
 }
+/*.buttons{
+	border-radius: 100%;
+	background-color: white;
+	border: none;
+	margin: 0;
+	padding: 0;
+	width:30px;
+	outline:none;
+}*/
 .youtube{
 	position:absolute;
 	top:0;
@@ -47,10 +39,6 @@
 	background-color:#C9EDF8;
 	padding-bottom: 25px;
 	padding-top: 8px;
-}
-.center {
-	text-align: center;
-	color: #486B7F;
 }
 .search{
 	margin-top:22px;
@@ -80,20 +68,10 @@ h4{
 	width: 20px;
 	height: 20px;
 }
-.disp {
-	background-color: #CFD8DC;
-	color:#486B7F;
-	font-size: 18px;
-	font-weight: 300;
-	font-family: 'Josefin Sans', sans-serif;
-	width: 100%;
-	position: relative;
-	left: -15px;
-	right: 0;
-}
-.bump {
-	margin-top: 10px;
-	margin-bottom: 10px;
+
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
 }
 .display_songs {
 	background-color: inherit;
@@ -124,8 +102,6 @@ ul {
 }
 .poop{
 	text-align: center;
-	font-weight: 300;
-	font-family: 'Josefin Sans', sans-serif;
 }
 .remove-btn {
 	color:black;
@@ -133,26 +109,8 @@ ul {
 	font-family: 'Josefin Sans', sans-serif;
 }
 .tiny {
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	margin-top:-10px;
 	margin-left: -20px;
-	background-color: #CFD8DC;
-	transform: translate(10px, 2px);
-}
-.current-song {
-	font-family: 'Cinzel', serif;
-	color:#486B7F;
-	margin-top: 20px;
-	font-size:15px;
-}
-.add-btn {
-	color:#486B7F;
-	background-color: #F5F0CE;
-	border-radius: 10%;
-	font-weight: 500;
-}
-a {
-	text-decoration: none;
-	color: inherit;
 }
