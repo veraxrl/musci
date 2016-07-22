@@ -147,6 +147,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 		if ($scope.tracktype==="YT") $scope.bestPlayer.pauseVideo();
 		if ($scope.tracktype==="SC") $scope.currentPlayer.pause();
 		$scope.control = true;
+		$scope.isPlaying= false;
 	} 
 
 	$scope.stopPlayer = function() {
@@ -155,6 +156,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 			$scope.currentPlayer.pause();
 			$scope.currentPlayer.seek(0);
 		}
+		$scope.isPlaying= false;
 	}
 
 	$scope.startPlayer = function() {
@@ -163,6 +165,7 @@ app.controller('mainCtrl', function($scope, $http, $firebaseArray, $firebaseObje
 			$scope.currentPlayer.play();
 		}
 		$scope.control = false;
+		$scope.isPlaying = true;
 	}
 
 	$scope.refreshDB = function() {
