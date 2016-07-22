@@ -166,4 +166,8 @@ a {
 }
 .logoz{
 	width:52px;
+	position: absolute;
+	top: 160px;
+	right: 112px;
+	transform: translate(-50%, -50%);
 }
